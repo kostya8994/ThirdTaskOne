@@ -27,17 +27,21 @@ fun agoToText(second: Int): String{
 }
 fun minutesToText(seconds: Int): String{
     val minutes = seconds / 60
-    return when (minutes) {
-        1, 21, 31, 41, 51 -> "$minutes минуту"
-        in 5..20 -> "$minutes минут"
+    return when {
+        (minutes > 4) && (minutes < 21) -> "$minutes минут"
+        ((minutes % 10) > 5) && ((minutes % 10) < 10) -> "$minutes минут"
+        (minutes % 10) == 0 -> "$minutes минут"
+        (minutes % 10) == 1 -> "$minutes минуту"
         else -> "$minutes минуты"
     }
 }
 fun hoursToText(seconds: Int): String{
     val hours = seconds / 3600
-    return when (hours) {
-        1, 21, 31, 41, 51 -> "$hours час"
-        in 5..20 -> "$hours часов"
+    return when {
+        (hours > 4) && (hours < 21) -> "$hours часов"
+        ((hours % 10) > 5) && ((hours % 10) < 10) -> "$hours часов"
+        (hours % 10) == 1 -> "$hours час"
+        (hours % 10) == 0 -> "$hours часов"
         else -> "$hours часа"
     }
 }
